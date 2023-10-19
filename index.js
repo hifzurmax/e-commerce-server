@@ -30,6 +30,7 @@ async function run() {
 
     const brandCollection = client.db('BrandShopDB').collection('brands');
     const productCollection = client.db('BrandShopDB').collection('products');
+    const userCollection = client.db('BrandShopDB').collection('users');
 
 
     app.get('/brands', async (req, res) => {
@@ -51,6 +52,15 @@ async function run() {
       const newProduct = req.body;
       const result = await productCollection.insertOne(newProduct);
       res.send(result);
+    })
+
+
+    //User api
+    app.post('/user', async(req, res) => {
+      const user = req.body;
+      console.log(user);
+      const result = await userCollection.insertOne(user);
+      res.send(result)
     })
 
 
